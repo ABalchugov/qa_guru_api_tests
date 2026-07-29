@@ -14,8 +14,18 @@ def test_get_total_count_of_clubs():
     assert response.status_code == 200
 
     body = response.json()
+    total_count = body["count"]
 
-    assert body["count"] == 92
+    response_all = requests.get("https://book-club.qa.guru/api/v1/clubs/", params={"page_size": total_count})
+
+    print("\nStatus code:", response.status_code)
+    print("Headers:", response.headers)
+    print("Body:", response.text)
+
+    assert response_all.status_code == 200
+
+    body_all = response_all.json()
+    assert body_all["count"] == len(body_all["results"])
 
 
 def test_page_size_clubs():
@@ -59,6 +69,16 @@ def test_total_count_with_schema_validation():
     assert response.status_code == 200
 
     body = response.json()
-    validate(body, schema=get_clubs_schema)
+    total_count = body["count"]
 
-    assert body["count"] == 92
+    response_all = requests.get("https://book-club.qa.guru/api/v1/clubs/", params={"page_size": total_count})
+
+    print("\nStatus code:", response.status_code)
+    print("Headers:", response.headers)
+    print("Body:", response.text)
+
+    assert response_all.status_code == 200
+
+    body_all = response_all.json()
+    validate(body_all, schema=get_clubs_schema)
+    assert body_all["count"] == len(body_all["results"])

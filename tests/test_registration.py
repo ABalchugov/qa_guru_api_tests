@@ -4,7 +4,7 @@ from jsonschema import validate
 from schemas.registration_schema import registration_schema
 
 API_URL = "https://book-club.qa.guru/api/v1"
-USERNAME = "avbalchugov"
+USERNAME = "test_registration_avbalchugov"
 PASSWORD = "password"
 
 def test_successful_registration():

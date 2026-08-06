@@ -7,6 +7,7 @@ API_URL = "https://book-club.qa.guru/api/v1"
 USERNAME = "test_registration_avbalchugov"
 PASSWORD = "password"
 
+
 def test_successful_registration():
     request_body = {"username": USERNAME, "password": PASSWORD}
 

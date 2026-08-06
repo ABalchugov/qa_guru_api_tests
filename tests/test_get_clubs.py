@@ -28,6 +28,7 @@ def test_total_count_with_schema_validation():
     validate(body_all, schema=get_clubs_schema)
     assert body_all["count"] == len(body_all["results"])
 
+
 def test_page_size_clubs():
     payload = {"page_size": 2}
     response = requests.get("https://book-club.qa.guru/api/v1/clubs/", params=payload)
@@ -41,6 +42,7 @@ def test_page_size_clubs():
     body = response.json()
 
     assert len(body["results"]) == payload["page_size"]
+
 
 def test_search_clubs():
     payload = {"search": "The Monkey's Raincoat"}
